@@ -25,9 +25,6 @@
             <!-- password -->
             <span>
                 <input name="password" type="password" class="form-control" placeholder="Password" require>
-                <div id="passwordHelpBlock" class="form-text">
-                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                </div>
             </span>
             <span class="button-span">
                 <button type="submit" class="btn btn-warning">Submit</button>
