@@ -43,6 +43,7 @@ form{
 button{
     width: 80%;
     text-align: center;
+    
 }
 
 .input-group{
@@ -50,7 +51,12 @@ button{
     grid-template-columns: repeat(2, 1fr); /* Creates two columns */
     gap: 10px;
 }
+.logo{
+    width: 7em;
+    height: 7em;
+    margin-left: 11em;
 
+}
 .logo-div{
     display: flex;
     justify-content: center;
@@ -59,13 +65,17 @@ button{
     
 }
 
-.logo-div h3 {
+.logo-div h3 span{
     color: #FFB602;
 }
- 
 .logo-div div {
-    background-color: #FFB602;
+    background-color: white;
     text-align: center;
     padding: 5px;
     border-radius: 5px;
+}
+
+.btn-warning{
+    color: white;
+    font-weight: bold;
 }

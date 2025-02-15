@@ -18,7 +18,7 @@
 <body>
     <div class="form-div">
         <form action="../controllers/signup.controller.php" method="post">
-            <h2 style="color: #FFB602">MAYEL <sub>sawbna</sub></h2>
+        <img src="../assets/Logo.png" class="logo">
             <!-- first name -->
             <div class="input-group">
                 <span>
@@ -57,19 +57,19 @@
                 <button type="submit" class="btn btn-warning">Submit</button>
             </span>
             <span class="button-span">
-                <a href="login.view.php">Do you have an account?</a>
+                <a href="login.views.php">Do you have an account?</a>
             </span>
             <?php check_signup_errors(); ?>
         </form>
     </div>
     <div class="second-div">
-        <h1 style="color: #FFB602;">Register Now!</h1>
+        <h1 style="color: white;">Register Now!</h1>
         <div class="logo-div">
             <div>
-                <h1>MAYEL<br>SAWBNA</h1>
+            <img src="../assets/Logo.png">
             </div>
             <h3>
-                Find Your Perfect Stay,<br> Anytime,<br> Anywhere.
+            Find Your Perfect Stay,<br> <span>Anytime</span>,<br> <span>Anywhere...</span>
             </h3>
         </div>
     </div>

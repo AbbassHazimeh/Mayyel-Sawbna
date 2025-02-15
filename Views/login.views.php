@@ -17,12 +17,10 @@
 <body>
     <div class="form-div">
         <form action="../controllers/login.controller.php" method="post">
-            <h2 style="color: #FFB602">MAYEL <sub>sawbna</sub></h2>
-            <!-- email -->
+        <img src="../assets/Logo.png" class="logo">
             <span>
                 <input name="email" class="form-control" type="email" placeholder="Email" require>
             </span>
-            <!-- password -->
             <span>
                 <input name="password" type="password" class="form-control" placeholder="Password" require>
             </span>
@@ -37,13 +35,13 @@
         
     </div>
     <div class="second-div">
-        <h1 style="color: #FFB602;">Welcome..!</h1>
+        <h1 style="color: white;">Welcome..!</h1>
         <div class="logo-div">
             <div>
-                <h1>MAYEL<br>SAWBNA</h1>
+            <img src="../assets/Logo.png">
             </div>
             <h3>
-                Find Your Perfect Stay,<br> Anytime,<br> Anywhere.
+                Find Your Perfect Stay,<br> <span>Anytime</span>,<br> <span>Anywhere...</span>
             </h3>
         </div>
     </div>

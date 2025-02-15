@@ -1,3 +1,9 @@
+
+<?php
+include("config/db.config.php");
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -10,26 +16,24 @@
 </head>
 
 <body>
-    <!-- NAVIBAR -->
     <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: rgb(0, 0, 51) !important;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" >
             <div class="container-fluid">
-                <h3 style="color: #FFB602;">MAYEL</h3>
+                <img src="assets/Logo.png" alt="Website Logo" class="logo" style="margin-right: 2em;">
                 <button style="background-color: #FFB602;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div style="color: #FFB602;" class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a style="color: #FFB602;" class="nav-link active" aria-current="page" href="/Views/signup.views.php">Signup</a>
-                        <a style="color: #FFB602;" class="nav-link" href="/Views/login.views.php">Login</a>
-                        <a style="color: #FFB602;" class="nav-link" href="#">About</a>
+                        <a class="nav-link" aria-current="page" href="/Views/signup.views.php">Signup</a>
+                        <a class="nav-link" href="/Views/login.views.php">Login</a>
+                        <a class="nav-link" href="#footer">About</a>
+                        <a class="nav-link" href="#footer">Contact</a>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
-
-    <!-- SEARCH SECTION -->
     <div class="first-div">
         <input class="form-control search-input" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
         <datalist id="datalistOptions">
@@ -41,35 +45,57 @@
         </datalist>
         <button id="search-button">Search</button>
     </div>
-
-    <!-- items -->
     <div class="items-div">
-        <div class="card" style="width: 18rem;">
-            <img src="../hotelBoking/assets/hotel-background.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary" style="background-color: rgb(0, 0, 51); ">Booking it</a>
-            </div>
-        </div>
-    </div>
+    <?php
+$hotelFolder = "assets";
+$hotels = array_diff(scandir($hotelFolder), array('.', '..'));
+$counter = 1;
+foreach ($hotels as $hotel) {
+    $hotelPath = $hotelFolder . "/" . $hotel;
+    if (is_dir($hotelPath)) {
+        $mainImage = $hotelPath . "/" . $hotel . ".jpg";
+        $hotelName = str_replace("_", " ", $hotel);
+        $hotelName = substr($hotelName, 1);
+        if (file_exists($mainImage)) {
+            // Prepare SQL statement
+            $stmt = $conn->prepare("SELECT LOCATION FROM hotel WHERE HOTEL_ID = ?");
+            $stmt->bind_param("i", $counter);  
+            $stmt->execute();
+            $stmt->bind_result($location);  
+            $stmt->fetch();  
+            $stmt->close();
+            
+            echo '
+                <div class="card" style="width: 18rem;">
+                    <img src="' . htmlspecialchars($mainImage) . '" class="card-img-top" alt="' . htmlspecialchars($hotelName . ' Hotel') . '">
+                    <div class="card-body">
+                        <h5 class="card-title">' . htmlspecialchars($hotelName) . '</h5>
+                        <p class="card-text">' . htmlspecialchars($location) . '</p>
+                        <a href="../Views/itemdetails.php?hotel_id='.$counter.'" class="btn btn-primary" style="background-color: rgb(0, 0, 51);">Booking it</a>
+                    </div>
+                </div>';
+            $counter++;  
+        } else {
+            echo "<!-- Image not found: " . htmlspecialchars($mainImage) . " -->\n";
+        }
+    }
+}
+?>
 
-    <!-- FOOTER -->
-    <footer>
+</div>
+    <footer id="footer">
         <div class="footer-container">
             <div class="footer-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
+                <a href="index.php" class="footer-link">Home</a>
+                <a href="/Views/about.php" class="footer-link">About</a>
+                <a href="#" class="footer-link">Services</a>
             </div>
             <div class="contact-section">
-                <p>📧 Email: <a href="mailto:contact@example.com">contact@example.com</a></p>
-                <p>📞 Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+                <p>📧 Email: <a href="mailto:mayyelsawbna@gmail.com" class="footer-link">mayyelsawbna@gmail.com</a></p>
+                <p>📞 Phone: <a href="tel:+96170839736" class="footer-link">+961 70 839 736</a></p>
             </div>
         </div>
     </footer>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
