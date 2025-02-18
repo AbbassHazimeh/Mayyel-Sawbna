@@ -27,26 +27,29 @@ CREATE TABLE HOTEL (
    PRIMARY KEY (HOTEL_ID)
 ) ENGINE=InnoDB;
 
+ALTER TABLE hotel ADD COLUMN IMAGE_PATH VARCHAR(255);
+
 -- Create ROOM_ table (HOTEL_ID added as a foreign key)
 CREATE TABLE ROOM_ (
    ROOM_ID INT AUTO_INCREMENT NOT NULL,
    HOTEL_ID INT NOT NULL,
-   ROOM_TYPE VARCHAR(100),
    ROOM_PRICE DECIMAL(10,2),
    CAPACITY INT,
    PRIMARY KEY (ROOM_ID),
    FOREIGN KEY (HOTEL_ID) REFERENCES HOTEL(HOTEL_ID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
-ALTER TABLE room_ DROP COLUMN ROOM_TYPE;
+ALTER TABLE room_ DROP COLUMN _ROOM_TYPE;
+ALTER TABLE room_ ADD COLUMN PATH_IMG VARCHAR(255),
+
 -- Create CUSTOMER table
 CREATE TABLE CUSTOMER (
    CUSTOMER_ID INT AUTO_INCREMENT NOT NULL,
    FIRST_NAME VARCHAR(50),
    LAST_NAME VARCHAR(50),
    EMAIL VARCHAR(100),
-   PASSWORD VARCHAR(100), 
+   _PASSWORD VARCHAR(100), 
    PHONE_NUMBER VARCHAR(100),
-   ADDRESS VARCHAR(255),
+   _ADDRESS VARCHAR(255),
    PRIMARY KEY (CUSTOMER_ID)
 ) ENGINE=InnoDB;
 
@@ -175,3 +178,174 @@ INSERT INTO room (ROOM_ID, HOTEL_ID, ROOM_PRICE, CAPACITY) VALUES
 (30, 8, 155, 3),
 (31, 8, 205, 4),
 (32, 8, 255, 5);
+
+-- Room path insertions--
+UPDATE room_
+SET PATH_IMG = '../assets/1_Portaluna_Hotel/Rooms/Room_1H1.jpg'
+WHERE ROOM_ID = 1;
+
+UPDATE room_
+SET PATH_IMG = '../assets/1_Portaluna_Hotel/Rooms/Room_2H1.jpg'
+WHERE ROOM_ID = 2;
+
+UPDATE room_
+SET PATH_IMG = '../assets/1_Portaluna_Hotel/Rooms/Room_3H1.jpg'
+WHERE ROOM_ID = 3;
+
+UPDATE room_
+SET PATH_IMG = '../assets/1_Portaluna_Hotel/Rooms/Room_1H1.jpg'
+WHERE ROOM_ID = 4;
+
+UPDATE room_
+SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_5H2.jpg'
+WHERE ROOM_ID = 5;
+
+UPDATE room_
+SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_6H2.jpg'
+WHERE ROOM_ID = 6;
+
+UPDATE room_
+SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_7H2.jpg'
+WHERE ROOM_ID = 7;
+
+UPDATE room_
+SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_8H2.jpg'
+WHERE ROOM_ID = 8;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/3_Anoor_Studios/Rooms/Room_9H3.jpg'
+WHERE ROOM_ID = 9;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/3_Anoor_Studios/Rooms/Room_10H3.jpg'
+WHERE ROOM_ID = 10;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/3_Anoor_Studios/Rooms/Room_11H3.jpg'
+WHERE ROOM_ID = 11;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/3_Anoor_Studios/Rooms/Room_12H3.jpg'
+WHERE ROOM_ID = 12;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/4_Radisson_Blu_Martinez_Beirut/Rooms/Room_13H4.jpg'
+WHERE ROOM_ID = 13;
+
+UPDATE room_
+SET PATH_IMG = '../assets/4_Radisson_Blu_Martinez_Beirut/Rooms/Room_14H4.jpg'
+WHERE ROOM_ID = 14;
+
+UPDATE room_
+SET PATH_IMG = '../assets/4_Radisson_Blu_Martinez_Beirut/Rooms/Room_15H4.jpg'
+WHERE ROOM_ID = 15;
+
+UPDATE room_
+SET PATH_IMG = '../assets/4_Radisson_Blu_Martinez_Beirut/Rooms/Room_16H4.jpg'
+WHERE ROOM_ID = 16;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_17H5.jpg'
+WHERE ROOM_ID = 17;
+
+UPDATE room_
+SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_18H5.jpg'
+WHERE ROOM_ID = 18;
+
+UPDATE room_
+SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_19H5.jpg'
+WHERE ROOM_ID = 19;
+
+UPDATE room_
+SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_20H5.jpg'
+WHERE ROOM_ID = 20;
+
+UPDATE room_
+SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_21H6.jpg'
+WHERE ROOM_ID = 21;
+
+UPDATE room_
+SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_22H6.jpg'
+WHERE ROOM_ID = 22;
+
+UPDATE room_
+SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_23H6.jpg'
+WHERE ROOM_ID = 23;
+
+UPDATE room_
+SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_24H6.jpg'
+WHERE ROOM_ID = 24;
+
+
+UPDATE room_
+SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_25H7.jpg'
+WHERE ROOM_ID = 25;
+
+UPDATE room_
+SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_26H7.jpg'
+WHERE ROOM_ID = 26;
+
+UPDATE room_
+SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_27H7.jpg'
+WHERE ROOM_ID = 27;
+
+UPDATE room_
+SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_28H7.jpg'
+WHERE ROOM_ID = 28;
+
+
+UPDATE room_
+SET PATH_IMG = '../assets/8_Le_Grand_Chalet_Zaarour/Rooms/Room_29H8.jpg'
+WHERE ROOM_ID = 29;
+
+UPDATE room_
+SET PATH_IMG = '../assets/8_Le_Grand_Chalet_Zaarour/Rooms/Room_30H8.jpg'
+WHERE ROOM_ID = 30;
+
+UPDATE room_
+SET PATH_IMG = '../assets/8_Le_Grand_Chalet_Zaarour/Rooms/Room_31H8.jpg'
+WHERE ROOM_ID = 31;
+
+UPDATE room_
+SET PATH_IMG = '../assets/8_Le_Grand_Chalet_Zaarour/Rooms/Room_32H8.jpg'
+WHERE ROOM_ID = 32;
+
+
+--Hotels path insertions--
+UPDATE hotel
+SET IMAGE_PATH = '../assets/1_Portaluna_Hotel/1_Portaluna_Hotel.jpg'
+WHERE HOTEL_ID = 1;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/2_Markazia_Suites/2_Markazia_Suites.jpg'
+WHERE HOTEL_ID = 2;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/3_Anoor_Studios/3_Anoor_Studios.jpg'
+WHERE HOTEL_ID = 3;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/4_Radisson_Blu_Martinez_Beirut/4_Radisson_Blu_Martinez_Beirut.jpg'
+WHERE HOTEL_ID = 4;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/5_voco_Beirut_Central_District_by_IHG/5_voco_Beirut_Central_District_by_IHG.jpg'
+WHERE HOTEL_ID = 5;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/6_Sky_Suites/6_Sky_Suites.jpg'
+WHERE HOTEL_ID = 6;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/7_Phoenicia_Residence/7_Phoenicia_Residence.jpg'
+WHERE HOTEL_ID = 7;
+
+UPDATE hotel
+SET IMAGE_PATH = '../assets/8_Le_Grand_Chalet_Zaarour/8_Le_Grand_Chalet_Zaarour.jpg'
+WHERE HOTEL_ID = 8;

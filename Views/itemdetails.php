@@ -1,23 +1,23 @@
 <?php
-include("../config/db.config.php");
-$hotel_id = $_GET['hotel_id'];
-$sql = "SELECT r.ROOM_ID, r.ROOM_PRICE, r.CAPACITY, h.HOTEL_NAME, h.LOCATION
-        FROM ROOM_ r
-        JOIN HOTEL h ON r.HOTEL_ID = h.HOTEL_ID
-        WHERE h.HOTEL_ID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $hotel_id); // Bind the hotel ID parameter
-$stmt->execute();
-$result = $stmt->get_result();
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-$hotel_details = $rows[0];
-$room_details = [];
-foreach ($rows as $row) {
-    $room_details[$row['ROOM_ID']] = [
-        'price' => $row['ROOM_PRICE'],
-        'capacity' => $row['CAPACITY']
-    ];
-}
+    include("../config/db.config.php");
+    $hotel_id = $_GET['hotel_id'];
+    $sql = "SELECT r.ROOM_ID, r.ROOM_PRICE, r.CAPACITY, h.HOTEL_NAME, h.LOCATION
+            FROM ROOM_ r
+            JOIN HOTEL h ON r.HOTEL_ID_ = h.HOTEL_ID
+            WHERE h.HOTEL_ID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $hotel_id); // Bind the hotel ID parameter
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $hotel_details = $rows[0];
+    $room_details = [];
+    foreach ($rows as $row) {
+        $room_details[$row['ROOM_ID']] = [
+            'price' => $row['ROOM_PRICE'],
+            'capacity' => $row['CAPACITY']
+        ];
+    }
 ?>
 
 
@@ -56,63 +56,63 @@ foreach ($rows as $row) {
         </nav>
     </div>
 
-<!-- First fix the PHP/HTML structure -->
-<div class="room-container">
-    <h1>Rooms for <?php echo $hotel_details['HOTEL_NAME']; ?></h1>
-    <p>Location: <?php echo $hotel_details['LOCATION']; ?></p>
-    <?php
-    $hotelFolder = "../assets";
-    $hotels = array_diff(scandir($hotelFolder), array('.', '..'));
-    if (!isset($_GET['hotel_id'])) {
-        die("Hotel ID not provided");
-    }
-    $hotelId = (int)$_GET['hotel_id'];
-    $targetHotel = null;
-    foreach ($hotels as $hotel) {
-        if (strpos($hotel, $hotelId . '_') === 0) {
-            $targetHotel = $hotel;
-            break;
+    <!-- First fix the PHP/HTML structure -->
+    <div class="room-container">
+        <h1>Rooms for <?php echo $hotel_details['HOTEL_NAME']; ?></h1>
+        <p>Location: <?php echo $hotel_details['LOCATION']; ?></p>
+        <?php
+        $hotelFolder = "../assets";
+        $hotels = array_diff(scandir($hotelFolder), array('.', '..'));
+        if (!isset($_GET['hotel_id'])) {
+            die("Hotel ID not provided");
         }
-    }
-    if ($targetHotel === null) {
-        die("Hotel not found");
-    }
-    $roomsPath = $hotelFolder . "/" . $targetHotel . "/Rooms";
-    if (!is_dir($roomsPath)) {
-        die("Rooms directory not found");
-    }
-    $roomFiles = array_diff(scandir($roomsPath), array('.', '..'));
-    $rooms = [];
-    foreach ($roomFiles as $file) {
-        if (preg_match('/Room_(\d+)H' . $hotelId . '/', $file, $matches)) {
-            $roomId = $matches[1];
-            if (!isset($rooms[$roomId])) {
-                $rooms[$roomId] = [];
+        $hotelId = (int)$_GET['hotel_id'];
+        $targetHotel = null;
+        foreach ($hotels as $hotel) {
+            if (strpos($hotel, $hotelId . '_') === 0) {
+                $targetHotel = $hotel;
+                break;
             }
-            $rooms[$roomId][] = $file;
         }
-    }
-    ?>
-<div class="image-grid">
-    <?php foreach ($rooms as $roomId => $images): ?>
-        <?php foreach ($images as $image): ?>
-            <div class="image-box">
-                <div class="card">
-                    <img src="<?php echo htmlspecialchars($roomsPath . '/' . $image); ?>"
-                         class="card-img-top"
-                         alt="Room <?php echo htmlspecialchars($roomId); ?> Image">
-                    <p>
-                    <?php echo isset($room_details[$roomId]) ? htmlspecialchars($room_details[$roomId]['price']) : 'N/A'; ?> USD, 
-                    <?php echo isset($room_details[$roomId]) ? htmlspecialchars($room_details[$roomId]['capacity']) : 'N/A'; ?> guests
-                    </p>
-                    <a href="#"><button type="button" class="book">Book</button></a>
-                    <!-- Take the user to the chckout page -->
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php endforeach; ?>
-</div>
-</div>
+        if ($targetHotel === null) {
+            die("Hotel not found");
+        }
+        $roomsPath = $hotelFolder . "/" . $targetHotel . "/Rooms";
+        if (!is_dir($roomsPath)) {
+            die("Rooms directory not found");
+        }
+        $roomFiles = array_diff(scandir($roomsPath), array('.', '..'));
+        $rooms = [];
+        foreach ($roomFiles as $file) {
+            if (preg_match('/Room_(\d+)H' . $hotelId . '/', $file, $matches)) {
+                $roomId = $matches[1];
+                if (!isset($rooms[$roomId])) {
+                    $rooms[$roomId] = [];
+                }
+                $rooms[$roomId][] = $file;
+            }
+        }
+        ?>
+        <div class="image-grid">
+            <?php foreach ($rooms as $roomId => $images): ?>
+                <?php foreach ($images as $image): ?>
+                    <div class="image-box">
+                        <div class="card">
+                            <img src="<?php echo htmlspecialchars($roomsPath . '/' . $image); ?>"
+                                class="card-img-top"
+                                alt="Room <?php echo htmlspecialchars($roomId); ?> Image">
+                            <p>
+                                <?php echo isset($room_details[$roomId]) ? htmlspecialchars($room_details[$roomId]['price']) : 'N/A'; ?> USD,
+                                <?php echo isset($room_details[$roomId]) ? htmlspecialchars($room_details[$roomId]['capacity']) : 'N/A'; ?> guests
+                            </p>
+                            <a href="./checkout.views.php?room_id=<?php echo $roomId . "&hotel_name=" . urlencode($hotel_details['HOTEL_NAME']); ?>" class="btn btn-primary">link</a>
+                            <!-- Take the user to the chckout page -->
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
 
 
 

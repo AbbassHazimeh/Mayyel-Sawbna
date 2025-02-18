@@ -13,9 +13,7 @@
 }
 .nav-link:hover{
     transform: scale(1.2);
-
     background-color: rgb(0, 0, 51);
-    
 }
 .navbar-nav a:hover{
     color: white;
