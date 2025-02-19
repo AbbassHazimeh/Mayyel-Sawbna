@@ -32,9 +32,9 @@
     </div>
     <div class="items-div">
         <?php
-            include(dirname(__DIR__) . '/config/db.config.php');
-            include(dirname(__DIR__) .'../hotelBooking/config/db.config.php');
-            displayHotels($conn);
+        include(dirname(__DIR__) . '/config/db.config.php');
+        include(dirname(__DIR__) . '../hotelBooking/config/db.config.php');
+        displayHotels($conn);
         ?>
     </div>
     <footer id="footer">

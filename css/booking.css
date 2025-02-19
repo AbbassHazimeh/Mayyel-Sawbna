@@ -1,0 +1,45 @@
+.nav-bar {
+    width: 100%;
+    height: 10vh;
+    background-color: rgb(0, 0, 51);
+    margin: 0;
+    padding: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-bar nav h1 {
+    padding-top: 10px;
+    font-family: initial;
+    margin: 0;
+    font-size: 34px;
+}
+
+.booking {
+    background-color: #f0f0f0;
+    border: 2px solid rgb(0, 0, 51);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking h3 {
+    color: rgb(0, 0, 51);
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.booking p {
+    color: #FFB602;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.booking p:last-child {
+    margin-bottom: 0;
+}

@@ -4,7 +4,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = htmlspecialchars(trim($_POST["email"]), ENT_QUOTES, 'UTF-8');
     $password = trim($_POST["password"]);
-
     try {
         require_once '../config/db.config.php';
         require_once '../services/login.services.php';
@@ -23,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($errors)) {
             $_SESSION["errors_login"] = $errors;
-            header("Location: ../views/login.views.php");
+            header("Location: ../Views/login.views.php");
             exit;
         } else {
             
@@ -40,6 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $e->getMessage());
     }
 } else {
-    header("Location: ../views/signup.views.php");
+    header("Location: ../Views/signup.views.php");
     exit;
 }

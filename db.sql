@@ -39,7 +39,7 @@ CREATE TABLE ROOM_ (
    FOREIGN KEY (HOTEL_ID) REFERENCES HOTEL(HOTEL_ID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 ALTER TABLE room_ DROP COLUMN _ROOM_TYPE;
-ALTER TABLE room_ ADD COLUMN PATH_IMG VARCHAR(255),
+ALTER TABLE room_ ADD COLUMN PATH_IMG VARCHAR(255);
 
 -- Create CUSTOMER table
 CREATE TABLE CUSTOMER (
@@ -78,10 +78,12 @@ CREATE TABLE MAY_HAVE (
 ) ENGINE=InnoDB;
 
 -- Create indexes
-CREATE INDEX idx_room_hotel ON ROOM_(HOTEL_ID);
-CREATE INDEX idx_booking_customer ON BOOKING(PAYMENT_ID);
-CREATE INDEX idx_may_have_room ON MAY_HAVE(ROOM_ID);
-CREATE INDEX idx_may_have_booking ON MAY_HAVE(BOOKING_ID);
+CREATE INDEX idx_room_hotel_id ON ROOM_(HOTEL_ID);
+CREATE UNIQUE INDEX idx_customer_email ON CUSTOMER(EMAIL);
+CREATE INDEX idx_booking_customer_id ON BOOKING(CUSTOMER_ID);
+CREATE INDEX idx_booking_payment_id ON BOOKING(PAYMENT_ID);
+CREATE INDEX idx_may_have_room_id ON MAY_HAVE(ROOM_ID);
+CREATE INDEX idx_may_have_booking_id ON MAY_HAVE(BOOKING_ID);
 
 -- Triggers
 DELIMITER $$
@@ -197,19 +199,19 @@ SET PATH_IMG = '../assets/1_Portaluna_Hotel/Rooms/Room_1H1.jpg'
 WHERE ROOM_ID = 4;
 
 UPDATE room_
-SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_5H2.jpg'
+SET PATH_IMG = '../assets/2_Markazia_Suites/Rooms/Room_5H2.jpg'
 WHERE ROOM_ID = 5;
 
 UPDATE room_
-SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_6H2.jpg'
+SET PATH_IMG = '../assets/2_Markazia_Suites/Rooms/Room_6H2.jpg'
 WHERE ROOM_ID = 6;
 
 UPDATE room_
-SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_7H2.jpg'
+SET PATH_IMG = '../assets/2_Markazia_Suites/Rooms/Room_7H2.jpg'
 WHERE ROOM_ID = 7;
 
 UPDATE room_
-SET PATH_IMG = '../assets/2_Markazia_Suite/Rooms/Room_8H2.jpg'
+SET PATH_IMG = '../assets/2_Markazia_Suites/Rooms/Room_8H2.jpg'
 WHERE ROOM_ID = 8;
 
 
@@ -251,52 +253,52 @@ WHERE ROOM_ID = 16;
 
 
 UPDATE room_
-SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_17H5.jpg'
+SET PATH_IMG = '../assets/5_voco_Beirut_Central_District_by_IHG/Rooms/Room_17H5.jpg'
 WHERE ROOM_ID = 17;
 
 UPDATE room_
-SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_18H5.jpg'
+SET PATH_IMG = '../assets/5_voco_Beirut_Central_District_by_IHG/Rooms/Room_18H5.jpg'
 WHERE ROOM_ID = 18;
 
 UPDATE room_
-SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_19H5.jpg'
+SET PATH_IMG = '../assets/5_voco_Beirut_Central_District_by_IHG/Rooms/Room_19H5.jpg'
 WHERE ROOM_ID = 19;
 
 UPDATE room_
-SET PATH_IMG = '../assets/5_voco_Beirut _Central_District_by_IHG/Rooms/Room_20H5.jpg'
+SET PATH_IMG = '../assets/5_voco_Beirut_Central_District_by_IHG/Rooms/Room_20H5.jpg'
 WHERE ROOM_ID = 20;
 
 UPDATE room_
-SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_21H6.jpg'
+SET PATH_IMG = '../assets/6_Sky_Suites/Rooms/Room_21H6.jpg'
 WHERE ROOM_ID = 21;
 
 UPDATE room_
-SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_22H6.jpg'
+SET PATH_IMG = '../assets/6_Sky_Suites/Rooms/Room_22H6.jpg'
 WHERE ROOM_ID = 22;
 
 UPDATE room_
-SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_23H6.jpg'
+SET PATH_IMG = '../assets/6_Sky_Suites/Rooms/Room_23H6.jpg'
 WHERE ROOM_ID = 23;
 
 UPDATE room_
-SET PATH_IMG = '..assets/6_Sky_Suites/Rooms/Room_24H6.jpg'
+SET PATH_IMG = '../assets/6_Sky_Suites/Rooms/Room_24H6.jpg'
 WHERE ROOM_ID = 24;
 
 
 UPDATE room_
-SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_25H7.jpg'
+SET PATH_IMG = '../assets/7_Phoenicia_Residence/Rooms/Room_25H7.jpg'
 WHERE ROOM_ID = 25;
 
 UPDATE room_
-SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_26H7.jpg'
+SET PATH_IMG = '../assets/7_Phoenicia_Residence/Rooms/Room_26H7.jpg'
 WHERE ROOM_ID = 26;
 
 UPDATE room_
-SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_27H7.jpg'
+SET PATH_IMG = '../assets/7_Phoenicia_Residence/Rooms/Room_27H7.jpg'
 WHERE ROOM_ID = 27;
 
 UPDATE room_
-SET PATH_IMG = '..assets/7_Phoenicia_Residence/Rooms/Room_28H7.jpg'
+SET PATH_IMG = '../assets/7_Phoenicia_Residence/Rooms/Room_28H7.jpg'
 WHERE ROOM_ID = 28;
 
 

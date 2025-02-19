@@ -1,11 +1,8 @@
 <?php
-    require_once '../models/room.model.php';
-    require_once '../services/checkout.services.php';
-
-    $room_id = $_GET["room_id"];
-    $hotel_name = $_GET["hotel_name"];
-
-    echo $room_id . " " .$hotel_name;
+// $room_id = $_GET["room_id"];
+require_once __DIR__ . "/../config/db.config.php";
+require_once __DIR__ . "/../services/checkout.sevices.php";
+require_once __DIR__ . '/../controllers/checkout.controller.php';
 ?>
 
 <!doctype html>
@@ -17,39 +14,60 @@
     <title>checkout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../css/home.css" rel="stylesheet">
+    <link href="../css/checkout.css" rel="stylesheet">
 </head>
 
 <body>
     <!-- navbar -->
-    <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <img src="../assets/Logo.png" alt="Website Logo" class="logo" style="margin-right: 2em;">
-                <button style="background-color: #FFB602;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div style="color: #FFB602;" class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" aria-current="page" href="/Views/signup.views.php">Signup</a>
-                        <a class="nav-link" href="/Views/login.views.php">Login</a>
-                        <a class="nav-link" href="#footer">About</a>
-                        <a class="nav-link" href="#footer">Contact</a>
-                    </div>
-                </div>
-            </div>
+    <div class="nav-bar">
+        <nav>
+            <h1>Checkout</h1>
         </nav>
     </div>
-
+    <div>
+        <?php check_booking_errors(); ?>
+    </div>
     <!-- Body of the Checkout -->
     <main>
         <div class="room-image">
+            <?php setPathRoom($conn, 3) ?>
+        </div>
+
+        <div class="room-info">
+            <div class="about-room">
+                <?php setInfoRoom($conn, 3, "ALI"); ?>
+            </div>
+            <div>
+                <?php DisplaypaymentContainer(); ?>
+            </div>
 
         </div>
-        <!-- the details  -->
-        <div>
-            
-        </div>
     </main>
+    <script>
+        function calculateAmount() {
+            let check_in = document.getElementById('check_in').value;
+            let check_out = document.getElementById('check_out').value;
+            let priceText = document.getElementById('price').textContent;
+            let amount = document.getElementById('amount');
+
+            if (!check_in || !check_out) return;
+
+            const price = parseFloat(priceText.slice(0, 3));
+            const out_date = new Date(check_out);
+            const outDate_int = out_date.getTime();
+            const in_date = new Date(check_in);
+            const inDate_int = in_date.getTime();
+
+            if (out_date <= in_date) {
+                amount.value = 0;
+                return;
+            }
+
+            difference_in_millisecond = outDate_int - inDate_int;
+            difference_in_days = difference_in_millisecond / (1000 * 60 * 60 * 24);
+            amount.value = difference_in_days * price ;
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
