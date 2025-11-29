@@ -1,6 +1,6 @@
 # Mayyel Sawbna
 
-Mayyel Sawbna is a web application built with **PHP** that [brief description of project goal, e.g., manages user data, handles content, or provides a service]. It uses **MySQL** for data storage and provides a dynamic, server-driven experience.
+Mayyel Sawbna is a PHP-based web application that allows users to manage content and interact with data dynamically. It uses **MySQL** for data storage and provides a server-driven experience with user authentication, form handling, and database management. The project demonstrates a complete PHP workflow with a structured frontend using HTML and CSS.
 
 ---
 
@@ -13,16 +13,17 @@ Mayyel Sawbna is a web application built with **PHP** that [brief description of
 
 ## Features
 - User authentication (login and registration)  
-- Data management through PHP and MySQL  
-- Dynamic content rendering based on user actions  
+- Dynamic content management using PHP and MySQL  
 - Form validation and error handling  
+- Admin panel for managing records (if applicable)  
+- Responsive design with HTML and CSS  
 
 ---
 
 ## Technologies Used
 - **Backend:** PHP  
 - **Database:** MySQL  
-- **Frontend:** HTML, CSS, JavaScript  
+- **Frontend:** HTML, CSS  
 
 ---
 
