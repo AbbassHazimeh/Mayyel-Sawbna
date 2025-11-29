@@ -1,6 +1,6 @@
 # Mayyel Sawbna
 
-Mayyel Sawbna is a web-based project designed to [brief description of project purpose, e.g., connect users with services, provide information, or any other core goal]. The project is built using **HTML, CSS, and JavaScript** and aims to provide an intuitive and interactive user experience.
+Mayyel Sawbna is a web application built with **PHP** that [brief description of project goal, e.g., manages user data, handles content, or provides a service]. It uses **MySQL** for data storage and provides a dynamic, server-driven experience.
 
 ---
 
@@ -12,19 +12,17 @@ Mayyel Sawbna is a web-based project designed to [brief description of project p
 ---
 
 ## Features
-- [Feature 1, e.g., Browse or search services/products]
-- [Feature 2, e.g., Add items to favorites or cart]
-- [Feature 3, e.g., Responsive design for all devices]
-- [Feature 4, e.g., Interactive forms or feedback system]
+- User authentication (login and registration)  
+- Data management through PHP and MySQL  
+- Dynamic content rendering based on user actions  
+- Form validation and error handling  
 
 ---
 
 ## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript
-- **Storage:** Local Storage (if applicable)
-- Optional enhancements:
-  - Can be extended with a backend (Node.js, PHP, or Java) for data persistence.
-  - Integration with APIs for extended functionality.
+- **Backend:** PHP  
+- **Database:** MySQL  
+- **Frontend:** HTML, CSS, JavaScript  
 
 ---
 
@@ -32,4 +30,3 @@ Mayyel Sawbna is a web-based project designed to [brief description of project p
 1. Clone the repository:
    ```bash
    git clone https://github.com/YourUsername/Mayyel-Sawbna.git
-
